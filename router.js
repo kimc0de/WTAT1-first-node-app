@@ -1,3 +1,5 @@
+"use strict";
+
 const httpStatus = require("http-status-codes"),
   contentTypes = require("./contentTypes"),
   utils = require("./utils");
@@ -8,10 +10,11 @@ const routes = {
 };
 
 exports.handle = (req, res) => {
-  try { routes[req.method][req.url](req,res);
+  try {
+    routes[req.method][req.url](req, res);
   } catch (e) {
     res.writeHead(httpStatus.OK, contentTypes.html);
-    res.end("Caught exception: "+ e.message);
+    utils.getFile("views/error.html", res);
   }
 };
 

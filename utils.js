@@ -1,3 +1,5 @@
+"use strict";
+
 const fs = require("fs"),
 httpStatus = require("http-status-codes"),
 contentTypes = require("./contentTypes");
@@ -8,7 +10,7 @@ module.exports = {
       if (error){
       res.writeHead(httpStatus.INTERNAL_SERVER_ERROR,
         contentTypes.html);
-        res.end("There was an error reading the requested file: " + file);
+        res.end("There was an error serving content of the file: " + file);
       }
       res.end(data,"UTF-8");
     });
